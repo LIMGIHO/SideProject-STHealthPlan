@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>운동 프로그램</title>
+    <link rel="stylesheet" href="/css/Homestyles.css">
+</head>
+<body>
+<div class="header">
+    <div class="user-info">
+        <h1 class="title">Welcome to ST-HealthPlan</h1>
+        <p>User: <span th:text="${user.name}">[Name]</span></p>
+        <p>Email: <span th:text="${user.email}">[Email]</span></p>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+<div class="container">
+    <div class="cards">
+        <div class="card" th:each="program : ${program}">
+            <h2 th:text="${program.programName}">운동 프로그램 제목</h2>
+            <p>
+                <strong>운동 사이클:</strong>
+                <span th:text="'운동 ' + ${program.workCycle} + '일 후 휴식 ' + ${program.restCycle} + '일'">운동 사이클 정보</span>
+            </p>
+            <p><strong>기본 휴식(분):</strong> <span th:text="${program.restTime}">기본 휴식(분)</span></p>
+<!--            <button>자세히 보기</button>-->
+        </div>
+    </div>
+</div>
+</body>
+</html>

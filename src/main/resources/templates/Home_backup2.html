@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>운동 프로그램</title>
+    <link rel="stylesheet" href="/css/Homestyles.css">
+    <script src="/js/app.js" defer></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 기존 app.js의 DOMContentLoaded와 충돌하지 않도록 이 안에 새로운 코드 작성
+            const selectElement = document.getElementById('exerciseProgram');
+            const checkbox = document.getElementById('defaultProgram');
+
+            // 페이지 로드 시 select에 이미 선택된 항목이 있는지 확인하고 체크박스 상태 설정
+            if (selectElement.value !== 'default') {
+                checkbox.checked = true;
+            }
+
+            // select 요소의 값이 변경될 때 체크박스 상태 업데이트
+            selectElement.addEventListener('change', function() {
+                if (selectElement.value !== 'default') {
+                    checkbox.checked = true;
+                } else {
+                    checkbox.checked = false;
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1 class="title">Welcome to ST-HealthPlan</h1>
+        <div class="program-selector">
+            <form>
+                <select id="exerciseProgram" name="exerciseProgram">
+                    <option value="default" disabled selected>Select a program</option>
+                    <option th:each="program : ${program}"
+                            th:value="${program.programId}"
+                            th:text="${program.programName}"
+                            th:selected="${program.def}">
+                            >
+                    </option>
+                </select>
+                <label for="defaultProgram">Default</label>
+                <input type="checkbox" id="defaultProgram" name="defaultProgram">
+            </form>
+        </div>
+        <div class="user-info">
+            <p>User: <span th:text="${user.name}">[Name]</span></p>
+            <p>Email: <span th:text="${user.email}">[Email]</span></p>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <div class="content">
+        <!-- 페이지의 나머지 내용 -->
+    </div>
+</body>
+</html>

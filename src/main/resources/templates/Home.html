@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>운동 프로그램</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 375px;
+            height: 812px;
+            background: white;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .header-text {
+            position: absolute;
+            top: 49px;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .bottom-circle {
+            position: absolute;
+            bottom: 60px;
+            left: 157.5px;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 30px;
+        }
+        
+        .arrow-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .workout-container {
+            position: absolute;
+            top: 110px;
+            width: 375px;
+            height: 278px;
+            background: black;
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .workout-text {
+            color: #F6FAFD;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- 상단 헤더 텍스트 -->
+    <div class="header-text" th:text="${headerTitle}">운동 프로그램</div>
+    
+    <!-- 운동 컨테이너 -->
+    <div class="workout-container">
+        <div class="workout-text">
+            <!-- 동적 데이터 바인딩 예시 -->
+            <div th:each="workout : ${workouts}">
+                <span th:text="${workout.title}">운동 제목</span>
+                <span th:text="${workout.description}">운동 설명</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 하단 원형 버튼 -->
+    <div class="bottom-circle">
+        <div class="arrow-icon">
+            <!-- SVG 화살표 아이콘 -->
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M19.27 8.256L16.038 5.024C15.881 4.868 15.669 4.78 15.448 4.78C15.227 4.78 15.015 4.868 14.859 5.024C14.703 5.18 14.615 5.392 14.615 5.613C14.615 5.834 14.703 6.046 14.859 6.202L17.822 9.167H0.833C0.612 9.167 0.4 9.254 0.244 9.411C0.088 9.567 0 9.779 0 10V10C0 10.221 0.088 10.433 0.244 10.589C0.4 10.746 0.612 10.833 0.833 10.833H17.873L14.859 13.846C14.782 13.923 14.72 14.015 14.678 14.116C14.636 14.217 14.615 14.326 14.615 14.435C14.615 14.545 14.636 14.653 14.678 14.755C14.72 14.856 14.782 14.948 14.859 15.025C15.015 15.181 15.227 15.269 15.448 15.269C15.669 15.269 15.881 15.181 16.038 15.025L19.271 11.792C19.738 11.323 20.001 10.687 20 10.024C20 9.361 19.738 8.725 19.27 8.256Z" fill="black"/>
+            </svg>
+        </div>
+    </div>
+</body>
+</html>
